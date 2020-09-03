@@ -87,7 +87,7 @@ fn()
 
 - 一个能够在服务器端运行`js`的开放源代码，跨平台`js`运行环境
 
-<img src="E:\NodeJS_Learning\image\服务器请求.png" alt="avatar" style="zoom:50%;" />
+<img src="image\服务器请求.png" alt="avatar" style="zoom:50%;" />
 
 P.s: - 服务器响应速度：带宽
 
@@ -229,7 +229,7 @@ function (exports, require, module, __filename, __dirname) {
 }
 ```
 
-<img src="E:\NodeJS_Learning\image\堆栈内存.png" alt="avatar" style="zoom:50%;" />
+<img src="image\堆栈内存.png" alt="avatar" style="zoom:50%;" />
 
 ### 7. Package
 
