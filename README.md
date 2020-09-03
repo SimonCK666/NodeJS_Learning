@@ -245,5 +245,156 @@ function (exports, require, module, __filename, __dirname) {
     - `test`: 单元测试
 - 包描述文件
   - 描述报的相关信息,以提供外部读取分析
+  - 用来表达非代码相关的信息，是一个`JSON`格式的文件
+  - **位于包的根目录下**
+  - 字段：
+    - name, description, version, keywords, maintainers, contributors, bugs, licenses, repositories, dependencies, homepage, `os`, `cpu`, engine, `builtin`, directories, implements, scripts, author, bin, main, `devDependencies`
 
 > 相关代码: E:\NodeJS_Learning\code\module
+
+## 3. NPM (Node Package Manager)
+
+- `npm` 帮助`node` 完成了第三方模块的发布、安装和以来等
+
+### 1. Commander
+
+- `npm -v` 查看版本
+- `npm version`
+- `npm search + packageName`
+- `npm init` 创建 `package.json`文件
+- `npm install/i + packageName`
+- `npm install/i + packageName -g` 全局安装
+
+> 全局安装的包一般都是一个工具, 不是在项目中使用的
+
+- `npm remove/r + packageName`
+- `npm install + packageName --save` **安装包并添加到依赖中**
+
+> 添加到依赖后, 下载项目之后, 直接 `npm install` 就可以直接安装所有的 package
+
+### 2. 实战
+
+```js
+npm init                               
+```
+
+```json
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (npm_test)
+version: (1.0.0)
+description: npm test
+entry point: (index.js)
+test command:
+git repository:
+keywords:
+author: Simon
+license: (ISC)
+About to write to E:\NodeJS_Learning\code\npm_test\package.json:
+
+{
+  "name": "npm_test",
+  "version": "1.0.0",
+  "description": "npm test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Simon",
+  "license": "ISC"
+}
+
+
+Is this OK? (yes) 
+
+// 注意：npm 中 package name 严禁使用大写作为名字
+```
+
+> `npm init` 创建出 `package.json`
+
+```json
+{
+  "name": "npm_test",
+  "version": "1.0.0",
+  "description": "npm test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Simon",
+  "license": "ISC"
+}
+
+```
+
+> 下载一个 module => math
+
+```json
+npm install math
+```
+
+```json
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN npm_test@1.0.0 No repository field.
+
++ math@0.0.3
+added 1 package from 1 contributor in 1.059s
+```
+
+- 在目录： E:\NodeJS_Learning\code\npm_test 下，出现了一个 `node_modules` 文件夹
+- `npm install` 的所有 `package` 都会安装到这个文件夹下
+
+> 创建 `index.js` 文件作为 package 的入口
+
+```js
+/* index.js **/
+var math = require("math");
+
+console.log(math);
+console.log(math.add(1, 3));
+```
+
+> 执行 index.js
+
+```json
+E:\NodeJS_Learning\code\npm_test>node index.js
+Object [Math] {
+  samesign: [Function],
+  copysign: [Function],
+  add: [Function],
+  sum: [Function],
+  mul: [Function],
+  prod: [Function],
+  factorial: [Function],
+  gcd: [Function],
+  lcm: [Function]
+}
+4
+```
+
+### 3. NPM 镜像服务器
+
+```json
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+
+```json
+npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+npm WARN deprecated har-validator@5.1.5: this
+C:\Users\lenovo\AppData\Roaming\npm\cnpm -> C:\Users\lenovo\AppData\Roaming\npm\node_modules\cnpm\bin\cnpm
++ cnpm@6.1.1
+added 685 packages from 970 contributors in 18.679s
+```
+
+> 具体实施在目录：E:\NodeJS_Learning\code\npm_test
+
+## 4. Buffer (缓冲区)
+
