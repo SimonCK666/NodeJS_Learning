@@ -5,7 +5,7 @@
 * @created 2020-09-02T15:52:31.410Z+08:00
 * @copyright None 
 * None
-* @last-modified 2020-09-02T16:18:54.900Z+08:00
+* @last-modified 2020-09-04T19:37:35.284Z+08:00
 */
 
 // exports.name = "Sun wukong";
@@ -19,5 +19,6 @@ module.exports = {
     age: 34,
     sayName: function() {
         console.log("I'm Zhu bajie");
+        console.log("Here~");
     }
 }
