@@ -270,7 +270,7 @@ function (exports, require, module, __filename, __dirname) {
 - `npm remove/r + packageName`
 - `npm install + packageName --save` **安装包并添加到依赖中**
 
-> 添加到依赖后, 下载项目之后, 直接 `npm install` 就可以直接安装所有的 package
+> 添加到依赖后, 下载项目之后, 直接 `npm install` 就可以直接安装所有的 package
 
 ### 2. 实战
 
@@ -398,7 +398,60 @@ added 685 packages from 970 contributors in 18.679s
 
 ## 4. Buffer (缓冲区)
 
-- 从结构上看 Buffer 象一个数组,他的元素为 16 进制的两位数
+- 从结构上看 Buffer 像一个数组,他的元素为 16 进制的两位数
+- **数组中不能存储二进制文件，Buffer 可以存储二进制数据**
 - 实际上一个元素就表示内存中的一个字节
 - 实际上 Buffer 中的内存不是通过 `js` 分配的,而是在底层通过 `c++` 申请的
 - 也就是我们可以直接通过 Buffer 来创建内存中的空间
+
+### 1. 使用Buffer
+
+- 不需要引入模块，直接使用即可
+- Buffer中存储的数据都是二进制数据，但是显示时都已**16进制形式显示**
+- Buffer 中每一个元素的范围是从 00 - f f (0 - 255) (00000000 - 11111111)
+  - 计算机中 一个 0 or 一个 1 称为 1 位 (bit)
+  - 8 bit = 1 byte (字节)  => 传输中最小单位
+    - 1024 byte = 1 kb
+    - 1024 kb = 1 mb
+    - 1024 mb = 1 gb
+    - 1024 gb = 1 tb
+  - buffer 中一个元素，占用内存中一个字节
+
+### 2. 创建一个指定大小的 Buffer
+
+```js
+var buf = Buffer.alloc(10);
+// 通过索引、操作 buf 中的元素
+buf[0] = 255;// 将会输出时转换为十六进制
+console.log(buf)
+// 数字在控制台或页面中输出一定是十进制
+console.log(buf[0])
+```
+
+- Buffer 内存一旦创建，不可以修改 => 在底层的操作
+
+### 3. Buffer 其他操作
+
+- `Buffer.from(str)`  将一个字符串传唤为 Buffer
+- `Buffer.alloc(size)`  创建指定大小的 Buffer
+- `Buffer.allocUnsafe(size)`  创建指定大小的Buffer，但可能包含敏感数据
+- `buf.toString()`  将缓冲区中的主句转换为字符串
+
+## 5. File System
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 官方文档
+
+> http://nodejs.cn/api/
+
