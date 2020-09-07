@@ -439,6 +439,53 @@ console.log(buf[0])
 
 ## 5. File System
 
+- 在 Node 中， 与文件系统的交互是非常重要的，服务器的本质就是将本地的文件发送给远程的客户端
+- Node 通过 fs 模块来和文件系统进行交互
+- 该模块提供了一些标准文件访问 API 来打开、读取、写入文件，以及与其交互。
+- 要使用 fs 模块，首先组要对其进行加载 `const fs = require("fs");`
+
+### 1. 同步和异步调用
+
+- fs 模块中所有的操作都有两种形式可供选择：**同步**和**异步**
+- 同步文件系统会**阻塞**程序的执行，也就是除非操作完毕，否则不会向下执行代码
+- 异步文件系统**不会阻塞**程序的执行，而是在操作完成时，通过回调函数将结果返回
+
+### 2. 文件的写入
+
+- 手动操作过程
+  1. 打开文件
+     - `fs.openSync(path, flags[ , mode])`
+       - `path`  要打开文件的路径
+       - `flags`   打开文件要做的操作类型
+         - r   只读
+         - w  可写
+       - model    设置文件的操作权限，一般不传
+     - 返回值
+       - 该方法会返回一个文件的描述符为结果，我们可以通过该描述符来对文件进行各种操作
+  2. 向文件中写入内容
+     - `fs.writeSync(fd, string[ , position[ , encoding]])`
+       - `fd`  文件的描述符，传入写入文件的描述符
+       - `string`  写入的内容
+       - `position`  写入的起始位置
+       - `encoding`  编码：默认UTF-8
+  3. 保存并关闭文件
+     - `closeSync(fd)`
+       - `fd`  要关闭文件的描述符
+
+```js
+var fs = require("fs");
+var fd = fs.openSync("hello.txt", "w");
+
+console.log(fd);
+// console.log("hello.txt", "w")
+
+// 像文件中写入内容
+fs.writeSync(fd, "It is a nice day~");
+
+// 关闭文件
+fs.closeSync(fd);
+```
+
 
 
 
